@@ -4,8 +4,10 @@ const router = express.Router();
 // controller
 const { getTransactions, addTransaction, deleteTransaction } = require('../controllers/transactions');
 
-// router.get('/', (req, res) => res.send('transactions route'));
+router.route('/')
+    .get(getTransactions)
+    .post(addTransaction);
 
-router.route('/').get(getTransactions);
+router.route('/:id').delete(deleteTransaction);
 
 module.exports = router;
