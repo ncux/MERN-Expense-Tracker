@@ -20,6 +20,10 @@ const app  = express();
 app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: false }));
 
+if(process.env.NODE_ENV == 'development') {
+    app.use(morgan('dev'));
+}
+
 app.get('/', (req, res) => res.send('Hi!'));
 app.use('/api/v1/transactions', transactions);
 

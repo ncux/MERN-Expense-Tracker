@@ -17,7 +17,7 @@ exports.getTransactions = async (req, res, next) => {
     next();
 };
 
-// POST route to add a transaction
+// POST route to add a transaction-item
 // route: /api/v1/transactions
 exports.addTransaction = async (req, res, next) => {
     try {
@@ -35,16 +35,16 @@ exports.addTransaction = async (req, res, next) => {
     
 };
 
-// route to DELETE a transaction
+// route to DELETE a transaction-item
 // route: /api/v1/transactions/:id
 exports.deleteTransaction = async (req, res, next) => {
     try {
         const transaction = await Transaction.findById(req.params.id);
         if(!transaction) {
-            return res.status(404).json({ error: 'The transaction was not found!' });
+            return res.status(404).json({ error: 'The transaction-item was not found!' });
         }
         await transaction.remove();
-        return res.status(200).json({ message: 'The transaction was successfully deleted!' });
+        return res.status(200).json({ message: 'The transaction-item was successfully deleted!' });
     } catch (e) {
         res.status(500).json({
             error: `Server error; ${ e.message }`

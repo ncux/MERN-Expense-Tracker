@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { TransactionsContext } from "../../contexts/transactions/context";
-import { Transaction } from "../transaction/transaction";
+import { TransactionItem } from "../transaction-item/transaction-item";
 
 export const TransactionList = props => {
 
@@ -11,7 +11,7 @@ export const TransactionList = props => {
             <h3>History</h3>
             <ul className="list">
                 { transactions.map(transaction => (
-                    <Transaction key={ transaction.id } transaction={ transaction } />
+                    <TransactionItem key={ transaction._id } transaction={ transaction } />
                 )) }
             </ul>
         </>
