@@ -24,7 +24,12 @@ if(process.env.NODE_ENV == 'development') {
     app.use(morgan('dev'));
 }
 
-app.get('/', (req, res) => res.send('Hi!'));
 app.use('/api/v1/transactions', transactions);
+
+if(process.env.NODE_ENV == 'production') {
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
+}
 
 app.listen(port, () => console.log(`Server running in ${process.env.NODE_ENV} mode on port ${port}`.green.bold)); // using the "colors" module
