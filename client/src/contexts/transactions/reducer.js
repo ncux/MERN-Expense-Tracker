@@ -11,7 +11,7 @@ export const Reducer = (state, action) => {
             return { ...state, error: action.payload, loading: false };
 
         case ADD_TRANSACTION:
-            return { ...state, transactions: [action.payload, ...state.transactions] };
+            return { ...state, transactions: [action.payload, ...state.transactions], loading: false };
 
         case DELETE_TRANSACTION:
             const transactions = state.transactions.filter(transaction => transaction._id !== action.payload);
